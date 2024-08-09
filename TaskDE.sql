@@ -120,3 +120,67 @@ ON mdt.no_rekening=sst.no_rekening
 INNER JOIN transaksi_simpanan ts
 ON sst.id_trasaksi=ts.id_transaksi
 WHERE DATE_FORMAT(ts.waktu_transaksi, '%d/%m/%Y')='10/05/2021';
+
+--Task 15
+SELECT mdt.no_rekening, dsr.deskripsi_status,Year(cst.Tanggal_lahir)
+FROM Master_Data_Tabungan mdt
+LEFT JOIN detail_status_rekening dsr
+ON mdt.status_rekening=dsr.id_status
+LEFT JOIN Customers cst
+ON mdt.customer_id=cst.customer_id
+WHERE Year(cst.Tanggal_lahir)<1995 AND
+cst.customer_id IN (SELECT DISTINCT mdp.customer_id FROM Master_Data_Pinjaman mdp);
+
+--Task 16
+SELECT cst.customer_id, cst.nama_customer, SUM(ts.jumlah_transaksi) Total_Transaksi_Debit, COUNT(sst.id_trasaksi) Frekuensi_Total_Transaksi_Debit
+FROM saldo_sisa_tabungan sst
+LEFT JOIN transaksi_simpanan ts
+ON sst.id_trasaksi=ts.id_transaksi
+LEFT JOIN Master_Data_Tabungan mdt
+ON sst.no_rekening=mdt.no_rekening
+LEFT JOIN Customers cst
+ON mdt.customer_id=cst.customer_id
+WHERE sst.tipe_transaksi="Debit"
+GROUP BY cst.customer_id,cst.nama_customer;
+
+--Task 17
+SELECT cst.nama_customer, cst.Tanggal_lahir
+FROM saldo_sisa_tabungan sst
+LEFT JOIN transaksi_simpanan ts
+ON sst.id_trasaksi=ts.id_transaksi
+LEFT JOIN Master_Data_Tabungan mdt
+ON sst.no_rekening=mdt.no_rekening
+LEFT JOIN Customers cst
+ON mdt.customer_id=cst.customer_id
+WHERE DATE_FORMAT(ts.waktu_transaksi, '%d/%m/%Y')='09/05/2021'
+AND sst.sisa_saldo<"1000000";
+
+--Task 18
+SELECT  cst.nama_customer,
+        mdt.no_rekening,
+        COALESCE(mdp.tanggal_buka_pinjaman, "Tidak_Punya_Rekening_Pinjaman") AS tanggal_buka_pinjaman
+FROM    Customers cst
+LEFT JOIN Master_Data_Pinjaman mdp
+ON cst.customer_id=mdp.customer_id
+INNER JOIN Master_Data_Tabungan mdt
+ON cst.customer_id=mdt.customer_id;
+
+--Task 19
+SELECT ts.id_transaksi, ts.jumlah_transaksi, cst.nama_customer, cst.Tanggal_lahir
+FROM transaksi_simpanan ts
+INNER JOIN saldo_sisa_tabungan sst
+ON ts.id_transaksi=sst.id_trasaksi
+INNER JOIN Master_Data_Tabungan mdt
+ON sst.no_rekening=mdt.no_rekening
+INNER JOIN Customers cst
+ON mdt.customer_id=cst.customer_id
+ORDER BY cst.Tanggal_lahir DESC;
+
+--Task 20
+SELECT cst.nama_customer, MIN(sst.sisa_saldo) AS Saldo_Akhir_Terkecil
+FROM saldo_sisa_tabungan sst
+LEFT JOIN Master_Data_Tabungan mdt
+ON sst.no_rekening=mdt.no_rekening
+LEFT JOIN Customers cst
+ON mdt.customer_id=cst.customer_id
+GROUP BY cst.nama_customer;
