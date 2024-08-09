@@ -1,0 +1,7 @@
+No_rekening,Jenis_rekening,Tanggal_buka_rekening,Status_rekening,Customer_id,Lokasi_pembuatan_rekening
+543219876,Konvensional,2018-01-22 09:30:00,3,123456,56
+543219875,Konvensional,2018-02-23 09:33:00,1,123457,57
+543219874,Giro,2019-05-27 11:29:00,2,123458,56
+543219873,Konvensional,2019-07-30 12:01:00,1,123459,58
+543219872,Konvensional,2019-07-21 08:55:00,1,123455,59
+543219871,Haji,2019-12-28 14:24:00,1,123457,57

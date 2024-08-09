@@ -1,0 +1,6 @@
+Customer_id,Nama_customer,Tanggal_lahir,Provinsi_alamat,Jenis_kelamin,Status_nikah,Gaji
+123456,Ardi Jono,2001-03-09,Jakarta,L,Belum Kawin,0
+123457,Hani Pulungan,1987-01-23,Jawa Barat,P,Kawin,25000000
+123458,Mutiara Rahayu,1999-06-13,Sulawesi Tengah,P,Janda/Duda,5000000
+123459,Dian Kusuma,1975-12-17,Jawa Timur,P,Belum Kawin,8000000
+123455,Febrian siregar,1991-09-12,Sumatera Utara,L,Kawin,3000000
