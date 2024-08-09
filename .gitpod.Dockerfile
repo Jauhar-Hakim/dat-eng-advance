@@ -15,7 +15,8 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
 RUN echo 'alias k="kubectl"' >> /home/gitpod/.bashrc
 
 USER gitpod
-
-RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh && \
-    sdk install java 17.0.3-ms && \
-    sdk default java 17.0.3-ms"
+SHELL ["/bin/bash", "-c"]
+RUN wget https://cache-redirector.jetbrains.com/intellij-jbr/jbr-17.0.4.1-linux-x64-b653.1.tar.gz
+RUN sudo tar zxf jbr-17.0.4.1-linux-x64-b653.1.tar.gz --directory /opt/
+RUN echo 'export JAVA_HOME=/opt/jbr-17.0.4.1-linux-x64-b653.1/' >> /home/gitpod/.bashrc \
+    && echo 'export PATH=/opt/jbr-17.0.4.1-linux-x64-b653.1/bin:$PATH' >> /home/gitpod/.bashrc
