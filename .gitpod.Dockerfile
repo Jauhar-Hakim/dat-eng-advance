@@ -34,11 +34,11 @@ RUN sudo apt update && \
 RUN go install sigs.k8s.io/kind@v0.23.0
 
 # Download Spark
-RUN mkdir /opt/spark
+RUN sudo mkdir /opt/spark
 RUN cd /opt/spark
 RUN wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz
 
-RUN mkdir /opt/kafka
+RUN sudo mkdir /opt/kafka
 RUN cd /opt/kafka
 RUN wget https://downloads.apache.org/kafka/3.8.0/kafka-3.8.0-src.tgz
 
