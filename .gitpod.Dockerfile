@@ -11,10 +11,6 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
     chmod 700 get_helm.sh && \
     ./get_helm.sh
 
-## Install dependencies
-RUN sudo apt update && \
-    sudo apt install fzf
-
 ## Install Krew main plugins
 RUN export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" && \
     kubectl krew install neat && \
@@ -27,3 +23,22 @@ RUN export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" && \
 
 # Add aliases
 RUN echo 'alias k="kubectl"' >> /home/gitpod/.bashrc
+
+# Base image with Java 11
+FROM openjdk:11.0.1-slim
+
+## Install dependencies
+RUN sudo apt update && \
+    sudo apt install fzf
+
+RUN go install sigs.k8s.io/kind@v0.23.0
+
+# Download Spark
+WORKDIR /opt/spark
+RUN wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz
+
+WORKDIR /opt/kafka
+RUN wget https://downloads.apache.org/kafka/3.8.0/kafka-3.8.0-src.tgz
+
+# Clean up temporary files
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
