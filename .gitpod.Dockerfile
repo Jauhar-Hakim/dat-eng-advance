@@ -1,4 +1,4 @@
-FROM gitpod/workspace-base:latest
+FROM gitpod/workspace-full:2024-08-08-14-54-59
 
 ## Install Kubectl
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
@@ -13,3 +13,9 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
 
 # Add aliases
 RUN echo 'alias k="kubectl"' >> /home/gitpod/.bashrc
+
+USER gitpod
+
+RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh && \
+    sdk install java 17.0.3-ms && \
+    sdk default java 17.0.3-ms"
