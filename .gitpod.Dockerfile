@@ -23,6 +23,3 @@ RUN export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" && \
 
 # Add aliases
 RUN echo 'alias k="kubectl"' >> /home/gitpod/.bashrc
-
-# Base image with Java 17
-FROM openjdk:17-jdk-slim
