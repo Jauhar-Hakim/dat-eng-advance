@@ -21,4 +21,4 @@
 # RUN echo 'export JAVA_HOME=/opt/jbr-17.0.4.1-linux-x64-b653.1/' >> /home/gitpod/.bashrc \
 #     && echo 'export PATH=/opt/jbr-17.0.4.1-linux-x64-b653.1/bin:$PATH' >> /home/gitpod/.bashrc
 
-FROM gitpod/workspace-postgres
+FROM gitpod/workspace-mysql
