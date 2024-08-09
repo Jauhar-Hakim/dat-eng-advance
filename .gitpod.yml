@@ -1,10 +1,10 @@
 image:
   file: .gitpod.Dockerfile
 
-tasks:
-  - init: |
-      go install sigs.k8s.io/kind@v0.23.0
-      sudo mkdir -p /opt/spark/
-      sudo wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz -P /opt/spark/
-      sudo mkdir -p /opt/kafka/
-      sudo wget https://downloads.apache.org/kafka/3.8.0/kafka-3.8.0-src.tgz -P /opt/kafka/
+# tasks:
+#   - init: |
+#       go install sigs.k8s.io/kind@v0.23.0
+#       sudo mkdir -p /opt/spark/
+#       sudo wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz -P /opt/spark/
+#       sudo mkdir -p /opt/kafka/
+#       sudo wget https://downloads.apache.org/kafka/3.8.0/kafka-3.8.0-src.tgz -P /opt/kafka/
