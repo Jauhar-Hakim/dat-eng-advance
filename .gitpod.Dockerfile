@@ -31,15 +31,4 @@ FROM openjdk:11.0.1-slim
 RUN sudo apt update && \
     sudo apt install fzf
 
-
-USER root
 RUN go install sigs.k8s.io/kind@v0.23.0
-
-# Download Spark
-RUN sudo mkdir -p /opt/spark
-WORKDIR /opt/spark
-RUN wget https://dlcdn.apache.org/spark/spark-3.5.1/spark-3.5.1-bin-hadoop3.tgz
-
-RUN sudo mkdir -p /opt/kafka
-WORKDIR /opt/kafka
-RUN wget https://downloads.apache.org/kafka/3.8.0/kafka-3.8.0-src.tgz
