@@ -24,11 +24,5 @@ RUN export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" && \
 # Add aliases
 RUN echo 'alias k="kubectl"' >> /home/gitpod/.bashrc
 
-# Base image with Java 11
-FROM openjdk:11.0.1-slim
-
-## Install dependencies
-RUN sudo apt update && \
-    sudo apt install fzf
-
-RUN go install sigs.k8s.io/kind@v0.23.0
+# Base image with Java 17
+FROM openjdk:17-jdk-slim
